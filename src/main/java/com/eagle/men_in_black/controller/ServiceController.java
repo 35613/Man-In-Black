@@ -213,7 +213,7 @@ public class ServiceController {
 																				// root
 																				// 경로
 			// String root_path = System.getProperty("catalina.home");
-			String attach_path = "images\\";
+			String attach_path = "images/download/";
 			String filePath = root_path + attach_path;
 
 			MultipartFile multipartFile = null;
@@ -256,7 +256,7 @@ public class ServiceController {
 
 					dto.setORIGINAL_FILE_NAME(originalFileName);
 
-					dto.setSTORED_FILE_NAME(storedFileName);
+					dto.setSTORED_FILE_NAME("download/"+storedFileName);
 					
 					serviceSvc.do_photo_update(dto);
 
@@ -330,7 +330,7 @@ public class ServiceController {
 																				// root
 																				// 경로
 			// String root_path = System.getProperty("catalina.home");
-			String attach_path = "images\\";
+			String attach_path = "images/download/";
 			String filePath = root_path + attach_path;
 
 			MultipartFile multipartFile = null;
@@ -373,7 +373,7 @@ public class ServiceController {
 
 					dto.setORIGINAL_FILE_NAME(originalFileName);
 
-					dto.setSTORED_FILE_NAME(storedFileName);
+					dto.setSTORED_FILE_NAME("download/"+storedFileName);
 
 				}
 
@@ -476,7 +476,7 @@ public class ServiceController {
 																			// root
 																			// 경로
 		// String root_path = System.getProperty("catalina.home");
-		String attach_path = "images\\";
+		String attach_path = "images/download/";
 		String filePath = root_path + attach_path;
 
 		MultipartFile multipartFile = null;
@@ -519,7 +519,7 @@ public class ServiceController {
 
 				photodto.setORIGINAL_FILE_NAME(originalFileName);
 
-				photodto.setSTORED_FILE_NAME(storedFileName);
+				photodto.setSTORED_FILE_NAME("download/"+storedFileName);
 				
 				serviceSvc.do_coupphoto_update(photodto);
 
@@ -608,7 +608,7 @@ public class ServiceController {
 																				// root
 																				// 경로
 			// String root_path = System.getProperty("catalina.home");
-			String attach_path = "images\\";
+			String attach_path = "images/download/";
 			String filePath = root_path + attach_path;
 
 			MultipartFile multipartFile = null;
@@ -638,7 +638,7 @@ public class ServiceController {
 
 					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-					storedFileName = "../images/" + getRandomString() + originalFileExtension;
+					storedFileName = getRandomString() + originalFileExtension;
 
 					// 첨부한 파일 생성
 					file = new File(filePath + storedFileName);
@@ -651,7 +651,7 @@ public class ServiceController {
 
 					photodto.setORIGINAL_FILE_NAME(originalFileName);
 
-					photodto.setSTORED_FILE_NAME(storedFileName);
+					photodto.setSTORED_FILE_NAME("download/"+storedFileName);
 
 				}
 
@@ -756,7 +756,7 @@ public class ServiceController {
 																			// 경로
 		//System.err.println("===>root_path" + root_path);
 
-		String attach_path = "images\\";
+		String attach_path = "images/download/";
 
 		//System.err.println("===>attach_path" + attach_path);
 		MultipartFile upload = fileBean.getUpload();
@@ -781,7 +781,7 @@ public class ServiceController {
 				e.printStackTrace();
 			}
 		}
-		String file_path = ".."+rootPath+"/" + "images/" + storedFileName; 
+		String file_path = rootPath+ attach_path + storedFileName; 
 		
 		ModelAndView mov = new ModelAndView("service/NewFile");
 		mov.addObject("file_path", file_path);

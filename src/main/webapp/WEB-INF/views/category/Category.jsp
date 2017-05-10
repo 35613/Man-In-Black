@@ -132,10 +132,10 @@ function addCookie(pd_no) {
    </div>
    <div class="col-md-6 visible-md visible-lg" align="right">
    <p>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="newor">신상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_PRICE ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="lowor">낮은가격순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="bestor">인기상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="reor">리뷰수순</a>
+      <a href=""category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="newor">신상품순</a>
+      <a href=""category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_PRICE ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="lowor">낮은가격순</a>
+      <a href=""category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="bestor">인기상품순</a>
+      <a href=""category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="reor">리뷰수순</a>
    </p>
    </div>
    <br></br><br></br>

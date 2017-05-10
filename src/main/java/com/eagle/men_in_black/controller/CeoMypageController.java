@@ -154,7 +154,7 @@ public class CeoMypageController {
 	        // 저장경로 
 	        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
 			//String root_path = System.getProperty("catalina.home");
-	        String attach_path = "images\\"; 
+	        String attach_path = "images/download/"; 
 			String filePath = root_path+attach_path;
 			//String rootPath = request.getContextPath();
 			System.out.println("저장경로=========================================================================================="+filePath);
@@ -206,7 +206,7 @@ public class CeoMypageController {
 	                
 	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
-	                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+	                listMap.put("STORED_FILE_NAME", "download/"+storedFileName);  // 저장될 파일이름 
 
 	                //listMap.put("FILE_SIZE", multipartFile.getSize());  // 파일크기 
 
@@ -229,7 +229,7 @@ public class CeoMypageController {
 	 	               
 	 	               listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
-	 	               listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+	 	               listMap.put("STORED_FILE_NAME", "download/"+storedFileName);  // 저장될 파일이름 
 
 	 	               //listMap.put("FILE_SIZE", multipartFile.getSize());  // 파일크기 
 
@@ -375,7 +375,7 @@ public class CeoMypageController {
 			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
 			//System.err.println("===>root_path" + root_path);
 			
-			String attach_path = "images\\"; 
+			String attach_path = "images/download/"; 
 			
 			//System.err.println("===>attach_path" + attach_path);
 			
@@ -402,7 +402,7 @@ public class CeoMypageController {
 				e.printStackTrace(); } 
 			} 
 			
-			String file_path = ".."+rootPath+"/" + "images/" + storedFileName; 
+			String file_path = rootPath + attach_path + storedFileName; 
 					
 			ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");
 			mov.addObject("file_path", file_path);
@@ -764,7 +764,7 @@ public class CeoMypageController {
 					 	HttpSession session = res.getSession();
 				        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
 						//String root_path = System.getProperty("catalina.home");
-				        String attach_path = "images\\";
+				        String attach_path = "images/download/";
 						String filePath = root_path+attach_path;
 
 						//System.out.println("저장경로=========================================================================================="+filePath);
@@ -811,7 +811,7 @@ public class CeoMypageController {
 
 				                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
-				                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
+				                listMap.put("STORED_FILE_NAME", "download/"+storedFileName);  // 저장될 파일이름
 				                
 				                listMap.put("BAN_SEQ", String.valueOf(banseqlist.get(w))); 
 				                
