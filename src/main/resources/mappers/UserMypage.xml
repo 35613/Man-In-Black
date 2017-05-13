@@ -27,7 +27,7 @@ FROM(SELECT
 A.POINT_PRICE,
 A.INCREASE, 
 A.POINT_FINAL, 
-TO_CHAR(A.POINT_TIME,'YYYY-MM-DD'),
+TO_CHAR(A.POINT_TIME,'YYYY-MM-DD')AS POINT_TIME,
 A.POINT_REASON,
 A.PRO_SEQ
 FROM POINTS A
@@ -66,7 +66,7 @@ FROM(
 SELECT A.SEL_SEQ,
 A.PRO_SEQ,
 A.SEL_NUM,
-TO_CHAR(A.SEL_TIME,'YYYY-MM-DD'),
+TO_CHAR(A.SEL_TIME,'YYYY-MM-DD')AS SEL_TIME,
 A.FINAL_PRICE,
 C.PRO_NAME,
 A.DEL_SEQ,
@@ -127,7 +127,7 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
+TO_CHAR(A.QNA_TIME,'YYYY-MM-DD')AS QNA_TIME,
 A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
@@ -204,7 +204,7 @@ FROM (
 				,A.DEL_CONTENT
 				,A.REC_NAME
 				,A.REC_TEL
-				,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD')
+				,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD')AS DEL_TIME
 				,A.DEL_PRICE
 				,A.DEL_STEP
 				,A.PRO_SEQ PRO_SEQ_st
@@ -279,7 +279,7 @@ SELECT DEL_SEQ,
   DEL_CONTENT,
   REC_NAME,
   REC_TEL,
-  TO_CHAR(DEL_TIME,'YYYY-MM-DD'),
+  TO_CHAR(DEL_TIME,'YYYY-MM-DD')AS DEL_TIME,
   DEL_PRICE,
   DEL_STEP,
   PRO_SEQ,
@@ -324,7 +324,7 @@ FROM (
                    A.POINT_PRICE,
                    A.INCREASE,
                    A.POINT_FINAL,
-                   TO_CHAR(A.POINT_TIME,'YYYY-MM-DD'),
+                   TO_CHAR(A.POINT_TIME,'YYYY-MM-DD')AS POINT_TIME,
                    A.PRO_SEQ,
                    A.POINT_REASON
            FROM POINTS A
@@ -406,7 +406,7 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
+TO_CHAR(A.QNA_TIME,'YYYY-MM-DD')AS QNA_TIME,
 A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
@@ -425,7 +425,7 @@ SELECT *
 FROM (SELECT 
              A.REV_SEQ,
              A.REV_TITLE,
-             TO_CHAR(A.REV_TIME,'YYYY-MM-DD'),
+             TO_CHAR(A.REV_TIME,'YYYY-MM-DD')AS REV_TIME,
              A.REV_STEP,
              A.SCORE,
              B.PRO_NAME
@@ -447,7 +447,7 @@ FROM (
       FROM(
            SELECT REV_SEQ,
                    REV_TITLE,
-                   TO_CHAR(REV_TIME,'YYYY-MM-DD'),
+                   TO_CHAR(REV_TIME,'YYYY-MM-DD')AS REV_TIME,
                    SCORE
            FROM REVIEW A JOIN PRODUCT B 
            ON A.PRO_SEQ=B.PRO_SEQ
@@ -475,7 +475,7 @@ FROM (
            SELECT A.QNA_SEQ,
                    B.PRO_NAME,
                    A.QNA_TITLE,
-                   TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
+                   TO_CHAR(A.QNA_TIME,'YYYY-MM-DD')AS QNA_TIME,
                    A.QNA_STEP
            FROM QNA A JOIN PRODUCT B 
            ON A.PRO_SEQ=B.PRO_SEQ
@@ -649,7 +649,7 @@ WHERE DEL_SEQ= #{DEL_SEQ}
       SELECT REV_SEQ,
               REV_TITLE,
               REV_CONTENT,
-              TO_CHAR(REV_TIME,'YYYY-MM-DD'),
+              TO_CHAR(REV_TIME,'YYYY-MM-DD') AS REV_TIME,
               NVL(SCORE,0) SCORE,
               REV_REF,
               USER_ID,
