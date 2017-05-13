@@ -17,12 +17,12 @@ SELECT TT1.*
                 COUPON, 
                 POINT, 
                 FINAL_PRICE, 
-                DEL_TIME, 
+                TO_CHAR(DEL_TIME,'YYYY-MM-DD'),
                 DEL_STEP,
                 DEL_SEQ
                 FROM DELIVERY 
                 WHERE USER_ID LIKE #{search}
-                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD')
                 AND TO_DATE(${END_DATE}, 'YY-MM-DD')
                 ORDER BY DEL_SEQ DESC
               ) T1
@@ -45,7 +45,12 @@ SELECT TT1.*
        SELECT ROWNUM RNUM,T1.*,T2.*
        FROM(
 
-SELECT A.REV_SEQ,B.PRO_NAME,A.REV_TITLE,A.REV_TIME,A.SCORE,B.ITEM
+SELECT A.REV_SEQ,
+        B.PRO_NAME,
+        A.REV_TITLE,
+        TO_CHAR(A.REV_TIME,'YYYY-MM-DD'),
+        A.SCORE,
+        B.ITEM
 FROM REVIEW A INNER JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ 
 WHERE A.REV_STEP = 'N' AND 
@@ -70,7 +75,12 @@ SELECT TT1.*
        SELECT ROWNUM RNUM,T1.*,T2.*
        FROM(
 
-SELECT A.QNA_SEQ,B.PRO_NAME,A.QNA_TITLE,A.QNA_TIME,B.ITEM,A.QNA_TYPE
+SELECT A.QNA_SEQ,
+        B.PRO_NAME,
+        A.QNA_TITLE,
+        TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
+        B.ITEM,
+        A.QNA_TYPE
 FROM QNA A INNER JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ 
 WHERE A.QNA_STEP = 'N' AND 

@@ -27,7 +27,7 @@ FROM(SELECT
 A.POINT_PRICE,
 A.INCREASE, 
 A.POINT_FINAL, 
-A.POINT_TIME,
+TO_CHAR(A.POINT_TIME,'YYYY-MM-DD'),
 A.POINT_REASON,
 A.PRO_SEQ
 FROM POINTS A
@@ -66,7 +66,7 @@ FROM(
 SELECT A.SEL_SEQ,
 A.PRO_SEQ,
 A.SEL_NUM,
-A.SEL_TIME,
+TO_CHAR(A.SEL_TIME,'YYYY-MM-DD'),
 A.FINAL_PRICE,
 C.PRO_NAME,
 A.DEL_SEQ,
@@ -127,7 +127,7 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME,
+TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
 A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
@@ -204,7 +204,7 @@ FROM (
 				,A.DEL_CONTENT
 				,A.REC_NAME
 				,A.REC_TEL
-				,A.DEL_TIME
+				,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD')
 				,A.DEL_PRICE
 				,A.DEL_STEP
 				,A.PRO_SEQ PRO_SEQ_st
@@ -279,7 +279,7 @@ SELECT DEL_SEQ,
   DEL_CONTENT,
   REC_NAME,
   REC_TEL,
-  DEL_TIME,
+  TO_CHAR(DEL_TIME,'YYYY-MM-DD'),
   DEL_PRICE,
   DEL_STEP,
   PRO_SEQ,
@@ -320,7 +320,13 @@ SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
       FROM(
-           SELECT A.POINT_SEQ, A.POINT_PRICE,A.INCREASE, A.POINT_FINAL, A.POINT_TIME,A.PRO_SEQ, A.POINT_REASON
+           SELECT A.POINT_SEQ,
+                   A.POINT_PRICE,
+                   A.INCREASE,
+                   A.POINT_FINAL,
+                   TO_CHAR(A.POINT_TIME,'YYYY-MM-DD'),
+                   A.PRO_SEQ,
+                   A.POINT_REASON
            FROM POINTS A
            WHERE USER_ID = #{id}
            ORDER BY A.POINT_SEQ DESC
@@ -400,7 +406,7 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME,
+TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
 A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
@@ -419,7 +425,7 @@ SELECT *
 FROM (SELECT 
              A.REV_SEQ,
              A.REV_TITLE,
-             A.REV_TIME,
+             TO_CHAR(A.REV_TIME,'YYYY-MM-DD'),
              A.REV_STEP,
              A.SCORE,
              B.PRO_NAME
@@ -439,7 +445,10 @@ SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
       FROM(
-           SELECT REV_SEQ, REV_TITLE, REV_TIME,SCORE 
+           SELECT REV_SEQ,
+                   REV_TITLE,
+                   TO_CHAR(REV_TIME,'YYYY-MM-DD'),
+                   SCORE
            FROM REVIEW A JOIN PRODUCT B 
            ON A.PRO_SEQ=B.PRO_SEQ
            JOIN MEMBERS C
@@ -463,7 +472,11 @@ SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
       FROM(
-           SELECT A.QNA_SEQ, B.PRO_NAME, A.QNA_TITLE,A.QNA_TIME, A.QNA_STEP
+           SELECT A.QNA_SEQ,
+                   B.PRO_NAME,
+                   A.QNA_TITLE,
+                   TO_CHAR(A.QNA_TIME,'YYYY-MM-DD'),
+                   A.QNA_STEP
            FROM QNA A JOIN PRODUCT B 
            ON A.PRO_SEQ=B.PRO_SEQ
            WHERE A.USER_ID = #{id}  ) T1
@@ -633,19 +646,18 @@ WHERE DEL_SEQ= #{DEL_SEQ}
 
 <!-- 리뷰읽기  -->
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
-SELECT 
-REV_SEQ,
-REV_TITLE,
-REV_CONTENT,
-REV_TIME,
-NVL(SCORE,0) SCORE,
-REV_REF,
-USER_ID,
-PRO_SEQ,
-REV_STEP,
-NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=#{REV_SEQ}), 'none') STORED_NAME
-FROM REVIEW 
-WHERE REV_SEQ=#{REV_SEQ}
+      SELECT REV_SEQ,
+              REV_TITLE,
+              REV_CONTENT,
+              TO_CHAR(REV_TIME,'YYYY-MM-DD'),
+              NVL(SCORE,0) SCORE,
+              REV_REF,
+              USER_ID,
+              PRO_SEQ,
+              REV_STEP,
+              NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=#{REV_SEQ}), 'none') STORED_NAME
+      FROM   REVIEW
+      WHERE  REV_SEQ=#{REV_SEQ}
 </select>
 
 
@@ -772,24 +784,23 @@ INTO QNA
 
 <select id="do_select_PRO_SEQ_st" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
-SELECT 
-A.DEL_SEQ
-,A.DEL_ADDRESS
-,A.DEL_POSTCODE
-,A.DEL_NUMBER
-,A.DEL_CONTENT
-,A.REC_NAME
-,A.REC_TEL
-,A.DEL_TIME
-,A.DEL_PRICE
-,A.DEL_STEP
-,A.PRO_SEQ PRO_SEQ_st
-,A.USER_ID
-,A.COUPON
-,A.COUP_SEQ
-,A.POINT
-,A.FINAL_PRICE
-,A.REVIEW_SEQ
+SELECT  A.DEL_SEQ
+        ,A.DEL_ADDRESS
+        ,A.DEL_POSTCODE
+        ,A.DEL_NUMBER
+        ,A.DEL_CONTENT
+        ,A.REC_NAME
+        ,A.REC_TEL
+        ,A.DEL_TIME
+        ,A.DEL_PRICE
+        ,A.DEL_STEP
+        ,A.PRO_SEQ PRO_SEQ_st
+        ,A.USER_ID
+        ,A.COUPON
+        ,A.COUP_SEQ
+        ,A.POINT
+        ,A.FINAL_PRICE
+        ,A.REVIEW_SEQ
 FROM DELIVERY A
 WHERE USER_ID=#{USER_ID} AND A.DEL_SEQ = #{DEL_SEQ}
 
@@ -804,23 +815,22 @@ WHERE USER_ID=#{USER_ID} AND A.DEL_SEQ = #{DEL_SEQ}
 <![CDATA[
 SELECT *
 FROM
-(SELECT 
-A.DEL_SEQ
-,A.DEL_ADDRESS
-,A.DEL_POSTCODE
-,A.DEL_NUMBER
-,A.DEL_CONTENT
-,A.REC_NAME
-,A.REC_TEL
-,A.DEL_TIME
-,A.DEL_PRICE
-,A.DEL_STEP
-,A.PRO_SEQ PRO_SEQ_st
-,A.USER_ID
-,A.COUPON
-,A.COUP_SEQ
-,A.POINT
-,A.FINAL_PRICE
+(SELECT A.DEL_SEQ
+        ,A.DEL_ADDRESS
+        ,A.DEL_POSTCODE
+        ,A.DEL_NUMBER
+        ,A.DEL_CONTENT
+        ,A.REC_NAME
+        ,A.REC_TEL
+        ,A.DEL_TIME
+        ,A.DEL_PRICE
+        ,A.DEL_STEP
+        ,A.PRO_SEQ PRO_SEQ_st
+        ,A.USER_ID
+        ,A.COUPON
+        ,A.COUP_SEQ
+        ,A.POINT
+        ,A.FINAL_PRICE
 FROM DELIVERY A
 WHERE USER_ID=#{USER_ID}
 ORDER BY A.DEL_SEQ DESC
