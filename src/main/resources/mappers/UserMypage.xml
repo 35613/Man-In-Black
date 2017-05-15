@@ -791,7 +791,7 @@ SELECT  A.DEL_SEQ
         ,A.DEL_CONTENT
         ,A.REC_NAME
         ,A.REC_TEL
-        ,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD')
+        ,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD') AS DEL_TIME
         ,A.DEL_PRICE
         ,A.DEL_STEP
         ,A.PRO_SEQ PRO_SEQ_st
@@ -822,7 +822,7 @@ FROM
         ,A.DEL_CONTENT
         ,A.REC_NAME
         ,A.REC_TEL
-        ,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD')
+        ,TO_CHAR(A.DEL_TIME,'YYYY-MM-DD') AS DEL_TIME
         ,A.DEL_PRICE
         ,A.DEL_STEP
         ,A.PRO_SEQ PRO_SEQ_st
