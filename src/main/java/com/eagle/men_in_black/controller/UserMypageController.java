@@ -474,7 +474,7 @@ public class UserMypageController {
 		String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
 																			// root
 																			// 경로
-		String attach_path = "images\\";
+		String attach_path = "images/download/";
 		String filePath = root_path + attach_path;
 
 		MultipartFile multipartFile = null;
@@ -509,7 +509,7 @@ public class UserMypageController {
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
 				listMap.put("ORIGINAL_FILE_NAME", originalFileName); // 원래 파일이름
-				listMap.put("STORED_FILE_NAME", storedFileName); // 저장될 파일이름
+				listMap.put("STORED_FILE_NAME", "download/"+storedFileName); // 저장될 파일이름
 				listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 			}
 
@@ -585,7 +585,7 @@ public class UserMypageController {
 			HttpSession session = res.getSession();
 			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
 																				// root
-			String attach_path = "images\\";
+			String attach_path = "images/download/";
 			String filePath = root_path + attach_path;
 			MultipartFile multipartFile = null;
 
@@ -614,7 +614,7 @@ public class UserMypageController {
 					multipartFile.transferTo(file);
 					listMap = new HashMap<String, Object>();
 					listMap.put("ORIGINAL_FILE_NAME", originalFileName); // 원래
-					listMap.put("STORED_FILE_NAME", storedFileName); // 저장될 파일이름
+					listMap.put("STORED_FILE_NAME", "download/"+storedFileName); // 저장될 파일이름
 					listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 				}
 			}
@@ -752,7 +752,7 @@ public class UserMypageController {
 			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
 																				// root
 																				// 경로
-			String attach_path = "images\\";
+			String attach_path = "images/download/";
 			String filePath = root_path + attach_path;
 
 			MultipartFile multipartFile = null;
@@ -780,7 +780,7 @@ public class UserMypageController {
 					multipartFile.transferTo(file);
 					listMap = new HashMap<String, Object>();
 					listMap.put("ORIGINAL_FILE_NAME", originalFileName); // 원래
-					listMap.put("STORED_FILE_NAME", storedFileName); // 저장될 파일이름
+					listMap.put("STORED_FILE_NAME", "download/"+storedFileName); // 저장될 파일이름
 					listMap.put("REV_SEQ", Integer.parseInt(REV_SEQ));
 					userMypageSvc.do_update_reviewphoto(listMap);
 				}
