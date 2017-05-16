@@ -9,6 +9,7 @@ git_hub 기반의 스프링을 활용한 실전 프레임워크 설계와 구축
 
 쇼핑몰 서비스 개발 프로젝트.
 
+서비스 URL http://men-in-black.org
 ## Team
 
 독수리5형제 
