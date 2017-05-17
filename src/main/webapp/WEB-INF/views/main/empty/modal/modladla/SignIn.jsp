@@ -44,10 +44,10 @@
     Kakao.Auth.createLoginButton({
       container: '#kakao',
       success: function(authObj) {
-        alert(JSON.stringify(authObj));
+        alert('토큰 생성 성공 (준비중입니다)');
       },
       fail: function(err) {
-         alert(JSON.stringify(err));
+         alert('토큰 생성 실패');
       }
     });
   //]]>
